@@ -1,0 +1,56 @@
+<div >
+  <h1 style="color:red ;">Directives</h1>
+</div>
+
+<div *ngIf="courses.length >0 ;then Courseslist else noCourses" >
+
+</div>
+<ng-template #Courseslist>
+  <marquee style="color: yellow;"><h1>List of Courses</h1></marquee>
+
+</ng-template>
+
+
+<ng-template #noCourses>
+  <marquee style="color: chartreuse;"><h1> No Courses Yet</h1></marquee>
+</ng-template>
+
+<hr>
+
+<div [hidden]="courses.length > 0">
+ List of  Courses
+</div>
+
+<div [hidden]="courses.length == 0">
+  NO Courses yet
+</div>
+
+<hr>
+
+<ul class="nav nav-pills " style="color: blue;">
+  <li [class.active]="viewModal =='map'" ><a (click)="viewModal = 'map'" > Map View</a></li>
+  <li [class.active]="viewModal =='list'"><a (click)="viewModal= 'list'"> List  View</a></li>
+</ul>
+
+<div [ngSwitch]="viewModal">
+  <div *ngSwitchCase="'map'" style="color:red ;">Map View Content</div>
+  <div *ngSwitchCase="'list'" style="color: green;">List View Content</div>
+  <div *ngSwitchDefault style="color:pink ;">Otherwise</div>
+</div>
+
+<hr>
+
+<ul>
+  <li *ngFor="let coursess of course; index as i">
+         {{i+1}} - {{coursess.name}}
+  </li>
+</ul>
+
+<hr>
+<button (click)="onAdd()">ADD</button>
+<ul>
+  <li *ngFor="let courss of course; even as isEven">
+          {{courss.name}}
+          <span *ngIf="isEven">(Even)</span>
+  </li>
+</ul>
